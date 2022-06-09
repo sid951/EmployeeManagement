@@ -1,0 +1,460 @@
+﻿@model jQueryAjaxInAsp.NETMVC.Models.ViewModel.EmployeeModel
+
+@{ ViewBag.Title = "Dashboard";
+
+    }
+<style>
+    .box.box-primary {
+        border-top-color: #3c8dbc;
+    }
+    .box {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        border-top: 3px solid #d2d6de;
+        margin-bottom: 20px;
+        width: 100%;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    }
+    .box-body {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        padding: 10px;
+    }
+    .box-header.with-border {
+        border-bottom: 1px solid #f4f4f4;
+    }
+
+    .box-header {
+        color: #444;
+        display: block;
+        padding: 10px;
+        position: relative;
+    }
+    .profile-user-img {
+        margin: 0 auto;
+        width: 145px;
+        padding: 3px;
+        border: 3px solid #d2d6de;
+    }
+
+    .img-circle {
+        border-radius: 50%;
+    }
+    .info-box {
+        display: block;
+        min-height: 90px;
+        background: #fff;
+        width: 100%;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        border-radius: 2px;
+        margin-bottom: 15px;
+    }
+    .bg-yellow, .callout.callout-warning, .alert-warning, .label-warning, .modal-warning .modal-body {
+        background-color: #f39c12 !important;
+    }
+   
+
+    .info-box-content {
+        padding: 5px 10px;
+        margin-left: 90px;
+    }
+    .info-box-text {
+        text-transform: uppercase;
+    }
+    .info-box-icon {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 2px;
+        display: block;
+        float: left;
+        height: 90px;
+        width: 90px;
+        text-align: center;
+        font-size: 45px;
+        line-height: 90px;
+        background: rgba(0,0,0,0.2);
+    }
+    .progress-description, .info-box-text {
+        display: block;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .info-box-number {
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .bg-yellow {
+        color: #fff !important;
+    }
+    .ion-ios-people-outline:before {
+        content: "\f47b";
+    }
+    .news-title {
+     margin:0 auto;
+        align-items: center;
+        justify-content: space-between;
+        background: #016c9b;
+        border-radius: 10px;
+        color: #FFF;
+        padding: 10px 25px;
+      
+        background-image: url(../images/what-new-background.png);
+    }
+    .nav {
+        text-align: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #495057;
+        background-color: #fff;
+        border-color: #dee2e6 #dee2e6 #fff;
+    }
+
+    .nav-tabs .nav-link {
+        margin: 0 5px;
+    }
+
+    .nav-tabs .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+    .tab a {
+        background-color: rgb(255 255 255 / 16%) !important;
+    }
+    .news-title h2 {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 1.4em;
+        text-transform: uppercase;
+        padding-top: 0;
+    }
+
+    .announce h2 {
+        color: #ff6f00;
+        font-size: 1.5em;
+        font-family: 'Roboto Condensed', sans-serif;
+        padding: 0.5em 0 0 0;
+    }
+    .nav-tabs .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+    .text-dark {
+        color: #343a40 !important;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+</style>
+<div>
+    <p style="text-align:center; font-size:24px;"><b>Welcome, @Model.Name</p>
+    <hr />
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-pencil margin-r-5"></i> My Information
+        </h1>
+    </section>
+
+    <div class="col-md-4">
+
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="@Url.Content(Model.ImagePath)" alt="User profile picture">
+                <h3 class="profile-username text-center">@Model.Name</h3>
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Position</b> <a class="pull-right">@Model.Position</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Office Location</b> <i class="fa fa-map-marker margin-r-5"></i><a class="pull-right">@Model.Office</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Date of Joining</b> <a class="pull-right">@Model.DateOfJoining</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Age</b> <a class="pull-right">@Model.Age</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-book margin-r-5"></i> Address Information</h3>
+            </div>
+
+            <div class="box-body">
+                <p class="text-muted">
+                    @Model.Address1
+                </p>
+                <p class="text-muted">
+                    @Model.Address2 @Model.City @Model.State
+                </p>
+                <p class="text-muted">
+                    @Model.Pincode
+                </p>
+                <hr>
+
+                <strong><i class="fa fa-pencil margin-r-5"></i> Experience Detail</strong>
+                <p>
+                    <span class="label label-success">@Model.TotalExperience Years</span>
+                </p>
+                <hr>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-shopping-cart"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total login Hours</span>
+                    <span class="info-box-number">@Model.TotalWorkedHour Hours</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Employees</span>
+                    <span class="info-box-number">@Model.TotalEmployees</span>
+                </div>
+
+            </div>
+        </div>
+      
+    </div>
+    <div class="col-lg-8">
+        <div class="news-title">
+            <nav class="nav nav-tabs tab" style="border-bottom: 0px;">
+                <a class="nav-item nav-link active text-dark" data-toggle="tab" href="#menu4">
+                    <h2 style="color: #efffff;" onclick="fnlink3()">Notifications</h2>
+                </a>
+              
+            </nav>
+            <div id="v1" style="display:none" class="news-title-right">
+                <h3><a href="/whatsnew.aspx" target="_blank">View all</a></h3>
+
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div id="menu4" class="tab-pane active">
+                <div class="tickerN">
+                    <div class="ticker-2">
+                        <marquee width="100%" height="290" direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
+                            <ul>
+                               
+                                <div class="">
+                                    <a style="color: #974a4e " href="https://pspcl.in/instructions.aspx" target="_blank">
+
+                                        Digital Alive certificate for pensioners through Jeevan pramaan<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color: #0099db " href="https://pspcl.in/Otherlinks/cra-298-21.aspx" target="_blank">
+
+                                        Result of Main examination (Phase-II) for the posts of Clerk &amp; JE/Electrical against CRA 298/21<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color: #0099db " href="/pdfs/twenty-twentytwo/04/june162022DB_77_01_Jun_2022.pdf" target="_blank">
+
+                                        Blacklisting of M/s A2Z Infra Engineering Ltd. against work order No. 33/DB-77/2011 dated 5.7.2011<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color: #ff4d4d " href="/pdfs/twenty-twentytwo/04/meetsec20220510093456430.pdf" target="_blank">
+
+                                        From now onwords, the Charges under Director Finance will be looked after by Director Generation, till further order.<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color:#015174 " href="
+                                 https://cdn.digialm.com:443//EForms/configuredHtml/1258/70982/login.html" target="_blank">
+
+                                        Link for raising objections against Questions/Answer keys, if any for Main Examination (Phase-2) for the posts of JE/Electrical and Clerk against CRA 298/21.<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color:#ffa200 " href="/pdfs/twenty-twentytwo/04/APadvt_02_dated_07042022.pdf" target="_blank">
+
+                                        WALK IN INTERVIEW MINES MANGER<img src="assets/images/blinker.gif" alt="">
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color:#0099cc " href="https://pspcl.in/Otherlinks/apprenticeship-for-lineman-session-2021.aspx">
+
+                                        SELECTION LIST FOR APPRENTICE LINEMAN SESSION 2021-22
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color:#5314ed ">
+
+                                        Interest for 2021-22 on GPF subscription has been updated on the portal.
+
+
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <a style="color:Crimson " href="/Otherlinks/cra-298-21.aspx" target="_blank">
+
+                                        Call for Document checking for the post of Assistant Lineman against CRA 298/21.
+
+
+                                    </a>
+                                </div>
+                                <div class="">
+                                    <a style="color:Crimson " href="/Otherlinks/cra-298-21.aspx" target="_blank">
+
+                                        Public Notice regarding schedule of Main examination(Phase-II) along with List of candidates shortlisted for the post of Clerk and JE/Electrical uploaded
+
+
+                                    </a>
+                                </div>
+                                <!-- <li> -->
+                                <!-- <div class=""> -->
+                                <!-- <a style="color:brown" href="media/latestUpdate/Postponement_of_prescribed_dates_of_joining_of_JEs_&_LDCs.pdf" target="_blank">Postponement of prescribed dates of joining of JEs & LDCs <img src="assets/images/blinker.gif" alt=""/> -->
+                                <!-- </a> -->
+                                <!-- </div> -->
+                                <!-- </li> -->
+                                <!-- <li> -->
+                                <!-- <div class=""> -->
+                                <!-- <a style="color:darkmagenta" href="media/latestUpdate/Regarding option for posting at Thermal Plants.pdf" target="_blank"> -->
+                                <!-- Regarding option for posting at Thermal Plants<img src="assets/images/blinker.gif" alt=""/> -->
+                                <!-- </a> -->
+                                <!-- </div> -->
+                                <!-- </li> -->
+                                <li>
+                                    <div class="">
+                                        <a style="color:cornflowerblue" href="media/latestUpdate/Public-Notice-for-paperless-billing-through-smart-meter.pdf" target="_blank">
+
+                                            Paperless billing for consumers having load between 10 KW to 25 KW where Smart Meters are installed
+
+
+                                        </a>
+                                    </div>
+                                </li>
+                                <!-- <li> -->
+                                <!-- <div class=""> -->
+                                <!-- <a style="color:crimson" href="otherlinks/apprenticeship-for-lineman-session-2021.aspx"> -->
+                                <!-- Final merit list of Apprenticeship Lineman for the Session 2021<img src="assets/images/blinker.gif" alt=""/> -->
+                                <!-- </a> -->
+                                <!-- </div> -->
+                                <!-- </li> -->
+                                <!-- <li> -->
+                                <!-- <div class=""> -->
+                                <!-- <a style="color:darkgreen" href="otherlinks/cra-298-21.aspx"> -->
+                                <!-- Result of various posts against CRA 298/21<img src="assets/images/blinker.gif" alt=""/> -->
+                                <!-- </a> -->
+                                <!-- </div> -->
+                                <!-- </li> -->
+                                <!--
+                                                                            <li>
+                                                                                <div class="">
+                                                                                    <a style="color:fuchsia" href="https://drive.google.com/drive/folders/1oTRKirEjwLei1e9JjPMpJ3XvJ551Raj2?usp=sharing" target="_blank">
+
+                                                                                           list of consumers with load upto 2 kw whose defaulting amount arrears waived off by punjab government<img src="assets/images/blinker.gif" alt=""/>
+
+                                                                                    </a>
+                                                                                </div>
+                                                                            </li>
+                                -->
+                                <!--
+                                                                            <li>
+                                                                                <div class="">
+
+                                                                                    <a style="color:teal"
+                                href="https://drive.google.com/drive/folders/1mXrgTxmCJayfQ9SetY7SEGxycbSxlDFi?usp=sharing" target="_blank">
+
+                                                                                           List of Weaker section consumers availing free 200 units per month<img src="assets/images/blinker.gif" alt=""/>
+
+                                                                                    </a>
+                                                                                </div>
+                                                                            </li>
+                                -->
+                                <!-- <li> -->
+                                <!-- <div class=""> -->
+                                <!-- <a style="color:darkmagenta" href="/media/pdf/102/seregtariff20210610124851437.pdf" target="_blank"> -->
+                                <!-- Public Notice for Tariff of FY 2021-22 -->
+                                <!-- </a> -->
+                                <!-- </div> -->
+                                <!-- </li> -->
+                                <li>
+                                    <div class="">
+                                        <a style="color:olive" href="https://docs.pspcl.in/vieworders.html?ofc=cearrtp" target="_blank">
+
+                                            ARR Petitions for FY 2022-23
+
+                                        </a>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div id="menu3" class="tab-pane fade">
+                <div class="tickerN">
+                    <div class="" style="position: relative; height: 254px; width:100%; overflow: hidden;">
+                        <ul style="margin: 0px; position: absolute; top: 0px; width:100%;">
+                            <li>
+                                <p><iframe src="https://docs.pspcl.in/a1.aspx" height="400" width="100%" frameborder="0" scrolling="no" data-mce-fragment="1"> </iframe></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+   
